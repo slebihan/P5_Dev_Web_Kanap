@@ -193,8 +193,8 @@ function getForm() {
   let form = document.querySelector(".cart__order__form");
 
   //Création des expressions régulières
-  let emailRegExp = new RegExp( "^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$");
-  let charRegExp = new RegExp("^[a-zA-Z0-9_À-ÿ ]+$");
+  let emailRegExp = new RegExp( "^[a-zA-Z0-9-._]+@[a-zA-Z0-9-_]+[.][a-z]{2,10}$");
+  let charRegExp = new RegExp("^[a-zA-ZÀ-ÿ]+$");
   let addressRegExp = new RegExp("^[0-9]{1,3}(?:(?:[,. ]){1}[-a-zA-ZÀ-ÿ]+)+");
 
   // Ecoute de la modification du prénom
@@ -231,7 +231,8 @@ function getForm() {
     } else {
       firstNameErrorMsg.innerHTML =
         "Ce champ ne doit pas contenir de caractères spéciaux.";
-    }
+      }
+      
   };
 
   //validation du nom
@@ -277,24 +278,24 @@ function getForm() {
     } else {
       emailErrorMsg.innerHTML = "Veuillez renseigner votre email.";
     }
-  };
+  }
 }
 getForm();
 
 function postForm() {
   const order = document.getElementById("order");
-  order.addEventListener("click", (event) => {
+  order.addEventListener("submit", (event) => {
     event.preventDefault();
-
+  
     // je récupère les données du formulaire dans un objet
-    const contact = {
+    let contact = {
       firstName: document.getElementById("firstName").value,
       lastName: document.getElementById("lastName").value,
       address: document.getElementById("address").value,
       city: document.getElementById("city").value,
       email: document.getElementById("email").value,
     };
-
+    
     //Construction d'un array d'id depuis le local storage
     let products = [];
     for (let i = 0; i < productLocalStorage.length; i++) {
@@ -318,12 +319,12 @@ function postForm() {
         "Content-Type": "application/json",
       },
     };
-
+  
     fetch("http://localhost:3000/api/products/order", options)
       .then((response) => response.json())
       .then((data) => {
         localStorage.setItem("orderId", data.orderId);
-        // document.location.href = 'confirmation.html?id='+ data.orderId;
+        document.location.href = 'confirmation.html?id='+ data.orderId;
       });
   }); // fin eventListener postForm
 } // fin envoi du formulaire postForm
