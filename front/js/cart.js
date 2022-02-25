@@ -287,6 +287,7 @@ validFields();
 
 const orderBtn = document.getElementById("order");
 
+// Passage de commande
 orderBtn.addEventListener("click", (e) => {
     (firstName = document.getElementById("firstName").value),
     (lastName = document.getElementById("lastName").value),
@@ -307,7 +308,9 @@ orderBtn.addEventListener("click", (e) => {
   }
 });
 
+//
 function makeRequestbody() {
+  //construction de l'objet contact
   let contact = {
     firstName: document.getElementById("firstName").value,
     lastName: document.getElementById("lastName").value,
@@ -331,6 +334,8 @@ function makeRequestbody() {
   return sendFormData;
 }
 
+
+// Soumission du formulaire
 function submitForm(e) {
   e.preventDefault();
 
