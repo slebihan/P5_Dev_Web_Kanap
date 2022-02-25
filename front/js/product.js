@@ -38,6 +38,8 @@ let addToCartBtn = document.getElementById("cart");
 
 addToCartBtn.addEventListener("click", addToCart);
 
+// Ajout au panier //
+
 function addToCart() {
   let idKanap = idProduct;
   let nameKanap = document.querySelector("#title").textContent;
@@ -55,7 +57,9 @@ function addToCart() {
     altImg: altImg,
   };
 
+  //Vérification des conditions pour ajout au localstorage
   if (qtyKanap > 0 && qtyKanap <= 100 && colorKanap !== "") {
+    // Vérification s'il y a déjà des articles dans le localStorage
     if (localStorage.length === 0) {
       let productCart = [];
 
@@ -65,8 +69,9 @@ function addToCart() {
       localStorage.setItem("basket", objCart);
 
       alert("Votre article a bien été ajouté au panier !");
-    } 
+    }
 
+    // S'il y déjà des articles dans le panier
     else {
       let productCart = JSON.parse(localStorage.getItem("basket"));
 
@@ -93,9 +98,9 @@ function addToCart() {
         alert("Votre article a bien été ajouté au panier !");
       }
     }
-  } 
-  
-  else {
-    alert("Merci de sélectionner la couleur et le nombre d'articles souhaités ");
+  } else {
+    alert(
+      "Merci de sélectionner la couleur et le nombre d'articles souhaités "
+    );
   }
 }
