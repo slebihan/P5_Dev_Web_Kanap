@@ -9,7 +9,7 @@ async function fetchProducts() {
 async function listProducts() {
    await fetchProducts()
     .then( (product) => {
-        for (let i=0; i < product.length; i++) {		
+        for (let i=0; i < product.length; i++) {	
             
             // Insertion de l'élément "a"
             let KanapLink = document.createElement("a");
