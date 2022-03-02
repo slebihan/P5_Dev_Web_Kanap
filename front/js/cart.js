@@ -372,7 +372,6 @@ function makeRequestbody() {
     contact,
     products,
   };
-  console.log(sendFormData)
   return sendFormData;
 }
 

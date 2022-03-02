@@ -13,6 +13,10 @@ imgProduct.appendChild(img);
 //Récupération de l'article grace a l'id + affichage des données de ce dernier
 getProducts();
 
+//fonction getProducts() : Récupération et affichage des informations du produit sélectionné grâce à son id
+//Params : Aucun
+// Return : Aucun
+
 //Récupération de l'article grace a l'id + affichage des données de ce dernier
 async function getProducts() {
   await fetch("http://localhost:3000/api/products/" + idProduct)
@@ -38,6 +42,11 @@ let addToCartBtn = document.getElementById("cart");
 
 addToCartBtn.addEventListener("click", addToCart);
 
+//fonction addToCart() : Ajout des produits au panier en vérifiant les conditions au préalable (que la quantité soit entre 0 et 100,
+//qu'un couleur soit sélectionné, et vérification qu'il y ait ou non déjà des articles dans le panier
+//Params : Aucun
+//Return : Aucun
+
 // Ajout au panier //
 
 function addToCart() {
@@ -49,7 +58,7 @@ function addToCart() {
   let altImg = img.alt;
 
   let productCartObj = {
-    idKanap: idProduct,
+    idKanap: idKanap,
     nameKanap: nameKanap,
     colorKanap: colorKanap,
     qtyKanap: qtyKanap,
